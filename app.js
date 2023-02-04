@@ -1,6 +1,8 @@
 const grid = document.querySelector(".grid")
 const scoreDisplay = document.querySelector('#score')
 
+
+
 const blockwidth = 100
 const blockheight = 20
 const boardWidth = 1100
@@ -12,6 +14,8 @@ let yDirection = 2
 let score = 0
 
 
+
+
 const userStart = [230,10]
 let currentPosition = userStart
 
@@ -19,16 +23,19 @@ const ballStart = [270,40]
 let ballCurrentPosition = ballStart
 
 
+
+
 //block maker 
 class Block {
  constructor(xAis,yAxis){
-
     this.bottomLeft = [xAis, yAxis]
     this.bottomRight = [xAis + blockwidth, yAxis]
     this.topleft=[xAis,yAxis+blockheight]
     this.topRight=[xAis + blockwidth, yAxis + blockheight]
    }
  }
+
+
 
 const blocks = [new Block (10,470),
                 new Block (120,470),
@@ -63,6 +70,7 @@ const blocks = [new Block (10,470),
               ]
 //console.log(blocks[0])
 
+
 function moreBlocks(){
   for(let i = 0; i < blocks.length; i++){
    const block = document.createElement("div")
@@ -73,6 +81,9 @@ function moreBlocks(){
     grid.appendChild(block)
   }
 }
+
+
+
  moreBlocks()
  //userCreated
  const user = document.createElement('div')
@@ -80,6 +91,7 @@ function moreBlocks(){
  relocate()
  grid.appendChild(user)
 //console.log(user)
+
 
 
 //relocate
@@ -90,8 +102,9 @@ function relocate(){
 function Ballrelocate(){
   ball.style.left=ballCurrentPosition[0]+'px'
   ball.style.bottom=ballCurrentPosition[1]+'px'
-  
 }
+
+
 
 //player1Movement
 function moveMent(e){
@@ -112,6 +125,8 @@ function moveMent(e){
 }
 document.addEventListener('keydown',moveMent)
 
+
+
 //createdBall
 const ball = document.createElement('div')
  ball.classList.add('ball')
@@ -120,6 +135,7 @@ const ball = document.createElement('div')
 grid.appendChild(ball)
  
 
+
 //ballMovement
 function moveBall(){
 ballCurrentPosition[0] +=xDirection
@@ -127,7 +143,15 @@ ballCurrentPosition[1] +=yDirection
  Ballrelocate()
  checkForWall()
 }
-timerId=setInterval(moveBall,20)
+
+
+let ballSpeed = 30
+
+//ballMovement
+ 
+ 
+timerId=setInterval(moveBall,ballSpeed)
+
 
 function checkForWall(){
   // check for block collisions
@@ -140,9 +164,13 @@ function checkForWall(){
     allBlocks[i].classList.remove('block')
     blocks.splice(i, 1)
     changeDirection()
-    score++
+    score++ 
+    ballSpeed--
+    console.log(ballSpeed)
     scoreDisplay.innerHTML= score
+
     }
+
  //check for win
     if (blocks.length===0){
       scoreDisplay.innerHTML='YOU WIN'
@@ -150,6 +178,7 @@ function checkForWall(){
       document.removeEventListener('keydown',moveMent) 
       }  
    }
+
   //  check for wall collisions
   if (ballCurrentPosition[0] >= (boardWidth - ballDiameter) || 
       ballCurrentPosition[1] >= (boardHeight - ballDiameter) ||
@@ -157,6 +186,7 @@ function checkForWall(){
       ){  
         changeDirection()
       }
+
  //check for player collisions
     if(
       (ballCurrentPosition[0] > currentPosition[0] && ballCurrentPosition[0]< currentPosition[0] + blockwidth) && 
@@ -171,7 +201,12 @@ function checkForWall(){
     scoreDisplay.innerHTML= 'You Lose'
     document.removeEventListener('keydown',moveMent)
   }  
+  
 }
+
+
+
+
 
 //check for walls
  function changeDirection(){
@@ -192,6 +227,8 @@ function checkForWall(){
       return
   }
  }
+
+
 function startButton(){
  const start = document.querySelector('.startButton')
  start.addEventListener('click',function(){
