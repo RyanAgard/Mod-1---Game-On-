@@ -1,8 +1,5 @@
 const grid = document.querySelector(".grid")
 const scoreDisplay = document.querySelector('#score')
-
-
-
 const blockwidth = 100
 const blockheight = 20
 const boardWidth = 1100
@@ -14,14 +11,11 @@ let yDirection = 2
 let score = 0
 
 
-
-
 const userStart = [230,10]
 let currentPosition = userStart
 
 const ballStart = [270,40]
 let ballCurrentPosition = ballStart
-
 
 
 
@@ -34,7 +28,6 @@ class Block {
     this.topRight=[xAis + blockwidth, yAxis + blockheight]
    }
  }
-
 
 
 const blocks = [new Block (10,470),
@@ -83,9 +76,8 @@ function moreBlocks(){
 }
 
 
-
- moreBlocks()
  //userCreated
+ moreBlocks()
  const user = document.createElement('div')
  user.classList.add('user')
  relocate()
@@ -103,7 +95,6 @@ function Ballrelocate(){
   ball.style.left=ballCurrentPosition[0]+'px'
   ball.style.bottom=ballCurrentPosition[1]+'px'
 }
-
 
 
 //player1Movement
@@ -126,13 +117,12 @@ function moveMent(e){
 document.addEventListener('keydown',moveMent)
 
 
-
 //createdBall
-const ball = document.createElement('div')
+ const ball = document.createElement('div')
  ball.classList.add('ball')
  ball.style.left = ballCurrentPosition[0]+'px'
  ball.style.bottom = ballCurrentPosition[1]+'px'
-grid.appendChild(ball)
+ grid.appendChild(ball)
  
 
 
@@ -145,16 +135,16 @@ ballCurrentPosition[1] +=yDirection
 }
 
 
+//ballSpeed
 let ballSpeed = 30
 
-//ballMovement
- 
- 
-timerId=setInterval(moveBall,ballSpeed)
 
 
+
+
+
+ // check for block collisions
 function checkForWall(){
-  // check for block collisions
    for(let i= 0; i< blocks.length; i++){
     if(
       (ballCurrentPosition[0] > blocks[i].bottomLeft[0] && ballCurrentPosition[0] < blocks[i].bottomRight[0]) &&
@@ -168,10 +158,10 @@ function checkForWall(){
     ballSpeed--
     console.log(ballSpeed)
     scoreDisplay.innerHTML= score
-
+   
     }
 
- //check for win
+  //check for win
     if (blocks.length===0){
       scoreDisplay.innerHTML='YOU WIN'
       clearInterval(timerId)
@@ -187,7 +177,7 @@ function checkForWall(){
         changeDirection()
       }
 
- //check for player collisions
+  //check for player collisions
     if(
       (ballCurrentPosition[0] > currentPosition[0] && ballCurrentPosition[0]< currentPosition[0] + blockwidth) && 
       (ballCurrentPosition[1] > currentPosition[1] && ballCurrentPosition[1]< currentPosition[1] + blockheight))
@@ -203,9 +193,6 @@ function checkForWall(){
   }  
   
 }
-
-
-
 
 
 //check for walls
@@ -229,10 +216,29 @@ function checkForWall(){
  }
 
 
-function startButton(){
- const start = document.querySelector('.startButton')
- start.addEventListener('click',function(){
+function pauseButton(){
+  const button1 = document.createElement('Button')
+  button1.innerText = 'Pause'
+  button1.id = 'pauseButton'
+  button1.addEventListener('click', () => {
+    alert('Take a Break')
+  })
+  document.body.appendChild(button1)
+ };
+ pauseButton()
 
- });
-}
-startButton()
+
+function startButton(){
+  const button2 = document.createElement('Button')
+  // Set the button text to 'Can you click me?'
+  button2.innerText = 'start'
+  button2.id = 'startButton'
+  // Attach the "click" event to your button
+  button2.addEventListener('click', () => {
+     timerId=setInterval(moveBall,ballSpeed)
+
+
+  })
+  document.body.appendChild(button2)
+};
+ startButton()
