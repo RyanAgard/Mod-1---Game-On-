@@ -1,5 +1,5 @@
 # Mod-1---Game-On-
-## Pung-Game 2023
+## Pong-Game 2023
 |Name       | Email           |
 |-----------|----------------------|
 |Ryan Agard | ryantagard@yahoo.com |
