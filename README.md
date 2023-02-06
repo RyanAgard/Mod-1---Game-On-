@@ -21,5 +21,5 @@ and assignment of blocks and there values along with various function and loops.
 development of the blocks, ball and the player platform block. Eventlistners are responsible for the input of controls from the keyboard 
 
 # Challenges and Future Features
-Some of the challenge or adding a diffculty multplyer increase over time as the player continues to play. 
+Some of the challenges was adding ball speed increase over time as the player continues to play. 
 The start button still under development but still currently functional . Future potential features will be leaderboard ,reset button and more levels and higher diffcult as player progress  
