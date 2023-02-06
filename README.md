@@ -8,7 +8,7 @@
 # Javascript Pung Game
 Learning how to build a game using CSS ,JavaScript and Html.
 
-# Pung Game
+# Pong Game
 This application uses the left and right arrow keys on 
 the keyboard to control the block at the bottom of the screen to hit the ball 
 from one axis to another with in the div. You score points by hitting the blocks at the top
