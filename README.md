@@ -5,7 +5,7 @@
 |Ryan Agard | ryantagard@yahoo.com |
 
 
-# Javascript Pung Game
+# Javascript Pong Game
 Learning how to build a game using CSS ,JavaScript and Html.
 
 # Pong Game
