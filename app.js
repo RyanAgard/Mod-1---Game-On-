@@ -76,7 +76,7 @@ function moreBlocks(){
 }
 
 
- //userCreated
+ //playerCreated
  moreBlocks()
  const user = document.createElement('div')
  user.classList.add('user')
@@ -138,13 +138,33 @@ ballCurrentPosition[1] +=yDirection
 //ballSpeed
 let ballSpeed = 30
 
+function startButton(){
+  const button2 = document.createElement('Button')
+  button2.innerText = 'start'
+  button2.id = 'startButton'
+  button2.addEventListener('click', () => {
+    timerId=setInterval(moveBall,ballSpeed)
+  
+  })
+  document.body.appendChild(button2)
+};
+ startButton()
 
+function pauseButton(){
+  const button1 = document.createElement('Button')
+  button1.innerText = 'Pause'
+  button1.id = 'pauseButton'
+  button1.addEventListener('click', () => {
+    alert('Take a Break')
+  })
+  document.body.appendChild(button1)
+ };
+ pauseButton()
 
-
-
-
+     
  // check for block collisions
 function checkForWall(){
+  
    for(let i= 0; i< blocks.length; i++){
     if(
       (ballCurrentPosition[0] > blocks[i].bottomLeft[0] && ballCurrentPosition[0] < blocks[i].bottomRight[0]) &&
@@ -156,6 +176,7 @@ function checkForWall(){
     changeDirection()
     score++ 
     ballSpeed--
+   
     console.log(ballSpeed)
     scoreDisplay.innerHTML= score
    
@@ -193,7 +214,7 @@ function checkForWall(){
   }  
   
 }
-
+ 
 
 //check for walls
  function changeDirection(){
@@ -216,29 +237,5 @@ function checkForWall(){
  }
 
 
-function pauseButton(){
-  const button1 = document.createElement('Button')
-  button1.innerText = 'Pause'
-  button1.id = 'pauseButton'
-  button1.addEventListener('click', () => {
-    alert('Take a Break')
-  })
-  document.body.appendChild(button1)
- };
- pauseButton()
 
 
-function startButton(){
-  const button2 = document.createElement('Button')
-  // Set the button text to 'Can you click me?'
-  button2.innerText = 'start'
-  button2.id = 'startButton'
-  // Attach the "click" event to your button
-  button2.addEventListener('click', () => {
-     timerId=setInterval(moveBall,ballSpeed)
-
-
-  })
-  document.body.appendChild(button2)
-};
- startButton()
